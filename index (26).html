@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#13102A">
+<title>Zenlock</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="top">
+    <div class="chip" id="passChip">🛟 <b id="passCount">3</b></div>
+    <h1 class="logo">zen<span>lock</span></h1>
+    <div class="chip" id="streakChip">🔥 <b id="streakCount">0</b></div>
+  </header>
+
+  <main>
+    <!-- FOCUS -->
+    <section class="view active" id="v-focus">
+      <div class="panel clock"><div class="digits" id="focusDigits"></div><p class="sub" id="focusSub"></p></div>
+      <div class="grid">
+        <button class="tile" data-m="15"><b>15</b><span>Minutes</span></button>
+        <button class="tile" data-m="45"><b>45</b><span>Minutes</span></button>
+        <button class="tile" data-m="180"><b>3</b><span>Hours</span></button>
+        <div class="tile custom" id="customTile" data-m="custom">
+          <button class="step" id="minus">−</button>
+          <div><b id="customVal">1:00</b><span>Custom</span></div>
+          <button class="step" id="plus">+</button>
+        </div>
+      </div>
+      <p class="hint" id="shieldHint"></p>
+      <div class="slide" id="slideStart"><div class="knob">▶</div><span>Slide to start</span></div>
+    </section>
+
+    <!-- SHIELDS -->
+    <section class="view" id="v-shields">
+      <div class="panel shieldsHero" id="shieldsHero"></div>
+      <div class="seg" id="shieldTabs"></div>
+      <p class="hint">Jin apps ko block karna hai unhe tap karo. Selected = lock hoga.</p>
+      <div class="apps" id="appGrid"></div>
+    </section>
+
+    <!-- ROUTINES -->
+    <section class="view" id="v-routines">
+      <div class="panel"><div class="routineClock" id="routineClock"></div></div>
+      <div class="seg" id="routineTabs"></div>
+      <div class="card">
+        <div class="row between"><b>Auto-block on</b><label class="switch"><input type="checkbox" id="rOn"><i></i></label></div>
+        <div class="days" id="days"></div>
+        <div class="row gap">
+          <label class="time">Start<input type="time" id="rStart"></label>
+          <label class="time">End<input type="time" id="rEnd"></label>
+        </div>
+        <label class="time">Shield
+          <select id="rShield"><option value="0">Shield 1</option><option value="1">Shield 2</option><option value="2">Shield 3</option></select>
+        </label>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="view" id="v-stats">
+      <div class="panel"><div class="bars" id="bars"></div></div>
+      <p class="sub center" id="statLine"></p>
+      <div class="grid3">
+        <div class="card mini"><b id="stTotal">0</b><span>Month min</span></div>
+        <div class="card mini"><b id="stBest">0</b><span>Best day</span></div>
+        <div class="card mini"><b id="stSessions">0</b><span>Sessions</span></div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="nav" id="nav">
+    <button data-v="focus" class="on" aria-label="Focus">⏱</button>
+    <button data-v="shields" aria-label="Shields">🛡</button>
+    <button data-v="routines" aria-label="Routines">🗓</button>
+    <button data-v="stats" aria-label="Stats">📊</button>
+  </nav>
+</div>
+
+<!-- ACTIVE SESSION -->
+<div id="lockScreen" class="lock hidden">
+  <div class="panel clock dark"><div class="digits" id="lockDigits"></div></div>
+  <div class="grid lockGrid">
+    <div class="tile big"><b id="lockSec">00</b><span>sec</span></div>
+    <button class="tile" id="extend"><b>+15</b><span>min</span></button>
+    <div class="tile wide"><span>Ends</span><b id="lockEnds">--</b></div>
+    <div class="tile wide quote" id="quote"></div>
+  </div>
+  <div class="slide exit" id="slideExit"><span>Slide to exit</span><div class="knob">🛟</div></div>
+  <div class="dock" id="dock"></div>
+  <div class="dim" id="dim"><div id="dimClock"></div><p>Tap to wake</p></div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
